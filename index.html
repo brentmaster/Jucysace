@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jucy's Ace</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0a0a0a;--white:#f5f0e8;--yellow:#f5c842;--red:#d63b2f;--charcoal:#1c1c1c;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:"DM Sans",sans-serif;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:rgba(10,10,10,0.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);}
+.nav-logo{font-family:"Bebas Neue",sans-serif;font-size:1.8rem;color:var(--yellow);}
+.nav-links{display:flex;gap:1.5rem;list-style:none;}
+.nav-links a{font-size:0.8rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,240,232,0.6);text-decoration:none;}
+.nav-links a:hover{color:var(--yellow);}
+.hero{min-height:100vh;background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;}
+.hero-badge{font-family:"Permanent Marker",cursive;font-size:1rem;color:var(--yellow);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.5rem;}
+.hero-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(5rem,18vw,14rem);line-height:0.85;color:var(--white);}
+.hero-title span{color:var(--yellow);display:block;}
+.hero-subtitle{font-size:1rem;font-weight:300;color:rgba(245,240,232,0.6);letter-spacing:0.3em;text-transform:uppercase;margin-top:1.5rem;}
+.hero-pills{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;justify-content:center;}
+.pill{padding:0.6rem 1.4rem;border:1.5px solid rgba(245,240,232,0.25);border-radius:100px;font-size:0.85rem;color:var(--white);text-decoration:none;transition:all 0.25s;}
+.pill:hover,.pill.filled{background:var(--red);border-color:var(--red);}
+.marquee-wrap{background:var(--yellow);padding:0.8rem 0;overflow:hidden;white-space:nowrap;}
+.marquee-track{display:inline-block;animation:marquee 18s linear infinite;}
+.marquee-track span{font-family:"Bebas Neue",sans-serif;font-size:1.4rem;color:var(--black);margin:0 2rem;}
+section{padding:5rem 2rem;}
+.container{max-width:1100px;margin:0 auto;}
+.eyebrow{font-family:"Permanent Marker",cursive;font-size:0.85rem;color:var(--yellow);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1rem;}
+.sec-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(3rem,8vw,5rem);line-height:0.9;margin-bottom:1.5rem;}
+.about{background:var(--charcoal);}
+.about p{font-size:1rem;line-height:1.8;color:rgba(245,240,232,0.7);margin-bottom:1rem;}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem;}
+.stat{border:1px solid rgba(245,200,66,0.2);border-radius:12px;padding:1.2rem;background:rgba(245,200,66,0.04);}
+.stat-num{font-family:"Bebas Neue",sans-serif;font-size:2.5rem;color:var(--yellow);}
+.stat-label{font-size:0.75rem;color:rgba(245,240,232,0.5);letter-spacing:0.1em;text-transform:uppercase;}
+.menu-section{background:var(--black);}
+.tabs{display:flex;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:2rem;flex-wrap:wrap;}
+.tab{padding:0.8rem 1.5rem;font-size:0.85rem;font-weight:500;text-transform:uppercase;color:rgba(245,240,232,0.4);cursor:pointer;border:none;border-bottom:2px solid transparent;background:none;color:rgba(245,240,232,0.4);}
+.tab.active,.tab:hover{color:var(--yellow);border-bottom-color:var(--yellow);}
+.panel{display:none;}
+.panel.active{display:block;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;}
+.card{background:#111;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:1.3rem;transition:all 0.25s;}
+.card:hover{transform:translateY(-4px);border-color:rgba(245,200,66,0.2);}
+.card-name{font-weight:500;margin-bottom:0.3rem;}
+.card-desc{font-size:0.8rem;color:rgba(245,240,232,0.4);line-height:1.5;}
+.card-price{font-family:"Bebas Neue",sans-serif;font-size:1.5rem;color:var(--yellow);margin-top:0.8rem;}
+.bar-section{background:var(--red);padding:5rem 2rem;}
+.bar-section .sec-title,.bar-section p{color:var(--white);}
+.bar-section p{font-size:1rem;line-height:1.8;color:rgba(255,255,255,0.75);margin-bottom:1rem;}
+.tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.2rem;}
+.tag{background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.2);border-radius:100px;padding:0.3rem 0.9rem;font-size:0.78rem;color:rgba(255,255,255,0.9);}
+.shake-section{background:var(--charcoal);}
+.shake-section p{font-size:1rem;line-height:1.8;color:rgba(245,240,232,0.65);margin-bottom:1.5rem;}
+table{width:100%;border-collapse:collapse;margin-top:1rem;}
+th{text-align:left;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--yellow);padding:0.5rem 0;border-bottom:1px solid rgba(245,200,66,0.2);}
+td{padding:0.6rem 0;font-size:0.88rem;color:rgba(245,240,232,0.7);border-bottom:1px solid rgba(255,255,255,0.05);}
+td:not(:first-child){text-align:right;font-family:"Bebas Neue",sans-serif;font-size:1rem;color:var(--white);}
+.chips{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.5rem;}
+.chip{background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.2);border-radius:8px;padding:0.5rem 1rem;font-size:0.83rem;color:var(--white);}
+.visit-section{background:#fdf6e3;color:#0a0a0a;}
+.visit-section .eyebrow{color:var(--red);}
+.visit-section .sec-title{color:#0a0a0a;}
+.visit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-top:2rem;}
+.visit-card{background:var(--white);border-radius:14px;padding:1.8rem;border:1px solid rgba(0,0,0,0.06);}
+.visit-card .icon{font-size:1.8rem;margin-bottom:0.8rem;}
+.visit-card h3{font-family:"Bebas Neue",sans-serif;font-size:1.3rem;margin-bottom:0.4rem;}
+.visit-card p{font-size:0.88rem;color:rgba(0,0,0,0.55);line-height:1.7;}
+.order-section{background:#111;padding:5rem 2rem;}
+.form-group{margin-bottom:1rem;}
+label{display:block;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,240,232,0.5);margin-bottom:0.4rem;}
+input,textarea{width:100%;padding:0.85rem 1rem;background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#f5f0e8;font-size:0.95rem;outline:none;font-family:"DM Sans",sans-serif;}
+.items-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:1.2rem;}
+.item-check{display:flex;align-items:center;gap:0.5rem;padding:0.6rem 0.9rem;background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:8px;font-size:0.85rem;cursor:pointer;color:rgba(245,240,232,0.8);}
+.item-check input{width:16px;height:16px;accent-color:var(--yellow);}
+.btn{width:100%;padding:1rem;background:var(--yellow);color:#0a0a0a;border:none;border-radius:10px;font-family:"Bebas Neue",sans-serif;font-size:1.4rem;letter-spacing:0.1em;cursor:pointer;margin-top:1rem;}
+footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);padding:3rem 2rem;text-align:center;}
+.footer-logo{font-family:"Bebas Neue",sans-serif;font-size:3rem;color:var(--yellow);}
+.footer-tag{font-size:0.78rem;color:rgba(245,240,232,0.3);letter-spacing:0.2em;text-transform:uppercase;}
+#status{margin-top:0.8rem;text-align:center;font-size:0.9rem;min-height:1.2rem;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media(max-width:768px){.nav-links{display:none;}.stats,.items-grid{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">Jucy's Ace</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#bar">Bar</a></li>
+    <li><a href="#shakes">Shakes</a></li>
+    <li><a href="#visit">Visit</a></li>
+    <li><a href="#order" style="color:#f5c842;font-weight:600;">Order 🍔</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <p class="hero-badge">🍔 Burger · Shawarma · Bar · Shakes</p>
+  <h1 class="hero-title">JUCY'S<span>ACE</span></h1>
+  <p class="hero-subtitle">Your neighborhood spot for good food &amp; great vibes</p>
+  <div class="hero-pills">
+    <a href="#menu" class="pill filled">See Menu</a>
+    <a href="#visit" class="pill">Find Us</a>
+    <a href="#order" class="pill">Order Now</a>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>🍔 BURGERS</span><span>🌯 SHAWARMA</span><span>🍹 COCKTAILS</span><span>🥤 MILK SHAKES</span><span>🧋 MILK TEA</span><span>🍦 ICE CREAM</span><span>🍟 SNACKS</span><span>🍺 COLD BEERS</span>
+    <span>🍔 BURGERS</span><span>🌯 SHAWARMA</span><span>🍹 COCKTAILS</span><span>🥤 MILK SHAKES</span><span>🧋 MILK TEA</span><span>🍦 ICE CREAM</span><span>🍟 SNACKS</span><span>🍺 COLD BEERS</span>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="container">
+    <p class="eyebrow">Our Story</p>
+    <h2 class="sec-title">More Than Just Food</h2>
+    <p>Jucy's Ace is your go-to spot for hearty burgers, fresh shawarma, creamy shakes, and a full cocktail bar — all under one roof. Located permanently at <strong>Bungan Bungan Falls</strong>, nestled in lush nature.</p>
+    <p>Whether you're grabbing a quick bite at our counter, chilling at the bar, or lounging on our open-air terrace — there's a seat for you here. A local joint with big flavors and bigger heart.</p>
+    <div class="stats">
+      <div class="stat"><div class="stat-num">9+</div><div class="stat-label">Ice Cream Flavors</div></div>
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Cocktails</div></div>
+      <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Shake Flavors</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Dining Areas</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="menu">
+  <div class="container">
+    <p class="eyebrow">What We Serve</p>
+    <h2 class="sec-title">The Menu</h2>
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('food',this)">Food</button>
+      <button class="tab" onclick="showTab('cocktails',this)">Cocktails</button>
+      <button class="tab" onclick="showTab('drinks',this)">Drinks</button>
+    </div>
+    <div id="food" class="panel active">
+      <div class="grid">
+        <div class="card"><div class="card-name">🍔 Classic Burger</div><div class="card-desc">Juicy beef patty, fresh veggies, house sauce on toasted bun</div><div class="card-price">Ask us</div></div>
+        <div class="card"><div class="card-name">🌯 Shawarma</div><div class="card-desc">Seasoned meat, garlic sauce, veggies in soft flatbread</div><div class="card-price">Ask us</div></div>
+        <div class="card"><div class="card-name">🍚 Rice Meal</div><div class="card-desc">Hearty rice plate with your choice of protein and sides</div><div class="card-price">Ask us</div></div>
+        <div class="card"><div class="card-name">🍟 Snacks</div><div class="card-desc">Fries, chips and light bites perfect for sharing</div><div class="card-price">Ask us</div></div>
+      </div>
+    </div>
+    <div id="cocktails" class="panel">
+      <div class="grid">
+        <div class="card"><div class="card-name">🍹 Orchid Grenadine</div><div class="card-desc">Sweet and fruity with a vibrant red hue</div><div class="card-price">Ask us</div></div>
+        <div class="card"><div class="card-name">🍹 Orchid Triple Sec</div><div class="card-desc">Citrusy and refreshing cocktail blend</div><div class="card-price">Ask us</div></div>
+        <div class="card"><div class="card-name">🍹 Orchid Blue Curacao</div><div class="card-desc">Tropical blue cocktail with island vibes</div><div class="card-price">Ask us</div></div>
+        <div class="card"><div class="card-name">🍹 GSM Blue Mojito</div><div class="card-desc">Classic mojito twist with local spirit</div><div class="card-price">Ask us</div></div>
+        <div class="card"><div class="card-name">🥃 Toska Vodka</div><div class="card-desc">Smooth vodka served your way</div><div class="card-price">Ask us</div></div>
+        <div class="card"><div class="card-name">🥃 El Hombre Tequila</div><div class="card-desc">Bold tequila for the daring</div><div class="card-price">Ask us</div></div>
+      </div>
+    </div>
+    <div id="drinks" class="panel">
+      <div class="grid">
+        <div class="card"><div class="card-name">🥤 Sprite / Coke</div><div class="card-desc">Classic cold sodas</div><div class="card-price">Ask us</div></div>
+        <div class="card"><div class="card-name">🍺 Red Horse Beer</div><div class="card-desc">Strong local beer, ice cold</div><div class="card-price">Ask us</div></div>
+        <div class="card"><div class="card-name">🥃 Tandoori White</div><div class="card-desc">Smooth white spirit for easy sipping</div><div class="card-price">Ask us</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bar-section" id="bar">
+  <div class="container">
+    <p class="eyebrow" style="color:rgba(255,255,255,0.7)">Upstairs Lounge</p>
+    <h2 class="sec-title">The Bar</h2>
+    <p>Our open-air bar sits on the upper level with a stunning view of the surrounding forest. Full lineup of spirits, cocktails, beers — plus a beer tower for groups!</p>
+    <p>Sleek black marble counter, LED fairy lights, and good vibes all night long.</p>
+    <div class="tags">
+      <span class="tag">Vodka</span><span class="tag">Tequila</span><span class="tag">Whisky</span><span class="tag">Grenadine</span><span class="tag">Triple Sec</span><span class="tag">Blue Curacao</span><span class="tag">Mojito</span><span class="tag">Beer Tower</span>
+    </div>
+  </div>
+</section>
+
+<section class="shake-section" id="shakes">
+  <div class="container">
+    <p class="eyebrow">Sip Something Good</p>
+    <h2 class="sec-title">Shakes &amp; Milk Tea</h2>
+    <p>Handcrafted milkshakes and milk teas in a rainbow of flavors. Available in three sizes!</p>
+    <table>
+      <tr><th>Flavor</th><th>12oz</th><th>16oz</th><th>22oz</th></tr>
+      <tr><td>Mango</td><td>45</td><td>65</td><td>85</td></tr>
+      <tr><td>Avocado</td><td>45</td><td>65</td><td>85</td></tr>
+      <tr><td>Strawberry</td><td>45</td><td>65</td><td>85</td></tr>
+      <tr><td>Cookies &amp; Cream</td><td>40</td><td>60</td><td>83</td></tr>
+      <tr><td>Chocolate</td><td>45</td><td>65</td><td>85</td></tr>
+      <tr><td>Red Velvet</td><td>45</td><td>65</td><td>89</td></tr>
+      <tr><td>Caramel</td><td>40</td><td>60</td><td>85</td></tr>
+      <tr><td>Matcha</td><td>45</td><td>65</td><td>85</td></tr>
+      <tr><td>Wintermelon</td><td>45</td><td>65</td><td>85</td></tr>
+    </table>
+    <div class="chips">
+      <span class="chip">🥭 Mango</span><span class="chip">🥑 Avocado</span><span class="chip">🍓 Strawberry</span><span class="chip">🍪 Cookies &amp; Cream</span><span class="chip">🍫 Chocolate</span><span class="chip">🍰 Red Velvet</span><span class="chip">🍮 Caramel</span><span class="chip">🍵 Matcha</span><span class="chip">🍈 Wintermelon</span><span class="chip">🧋 Taro</span>
+    </div>
+  </div>
+</section>
+
+<section class="visit-section" id="visit">
+  <div class="container">
+    <p class="eyebrow">Come Hang With Us</p>
+    <h2 class="sec-title">Find Your Seat</h2>
+    <div class="visit-grid">
+      <div class="visit-card"><div class="icon">📍</div><h3>Location</h3><p>Permanently located at Bungan Bungan Falls — surrounded by lush trees and tropical greenery.</p></div>
+      <div class="visit-card"><div class="icon">🏠</div><h3>Three Spaces</h3><p>Ground floor food counter, upstairs bar lounge with fairy lights, and open-air terrace overlooking the forest.</p></div>
+      <div class="visit-card"><div class="icon">📺</div><h3>Entertainment</h3><p>Flat screen TV, music, and a chill lounge area for a relaxed hangout experience.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="order-section" id="order">
+  <div class="container" style="max-width:580px;">
+    <p class="eyebrow">Order Now</p>
+    <h2 class="sec-title">Place Your Order</h2>
+    <p style="color:rgba(245,240,232,0.6);margin-bottom:2rem;">Fill out the form and we'll receive your order via email! 🍔</p>
+    <div class="form-group"><label>Your Name *</label><input id="name" type="text" placeholder="e.g. Juan dela Cruz"></div>
+    <div class="form-group"><label>Phone Number *</label><input id="phone" type="tel" placeholder="e.g. 09XXXXXXXXX"></div>
+    <label style="display:block;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,240,232,0.5);margin-bottom:0.6rem;">Select Items *</label>
+    <div class="items-grid">
+      <label class="item-check"><input type="checkbox" value="Burger"> 🍔 Burger</label>
+      <label class="item-check"><input type="checkbox" value="Shawarma"> 🌯 Shawarma</label>
+      <label class="item-check"><input type="checkbox" value="Rice Meal"> 🍚 Rice Meal</label>
+      <label class="item-check"><input type="checkbox" value="Fries"> 🍟 Fries</label>
+      <label class="item-check"><input type="checkbox" value="Mango Shake"> 🥭 Mango Shake</label>
+      <label class="item-check"><input type="checkbox" value="Strawberry Shake"> 🍓 Strawberry</label>
+      <label class="item-check"><input type="checkbox" value="Chocolate Shake"> 🍫 Choco Shake</label>
+      <label class="item-check"><input type="checkbox" value="Milk Tea"> 🧋 Milk Tea</label>
+      <label class="item-check"><input type="checkbox" value="Cocktail"> 🍹 Cocktail</label>
+      <label class="item-check"><input type="checkbox" value="Beer"> 🍺 Beer</label>
+    </div>
+    <div class="form-group"><label>Special Instructions</label><textarea id="notes" rows="3" placeholder="e.g. Extra sauce, no ice..."></textarea></div>
+    <button class="btn" onclick="sendOrder()">SEND ORDER 📲</button>
+    <div id="status"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Jucy's Ace</div>
+  <p class="footer-tag">Burger · Shawarma · Bar · Shakes · Milk Tea</p>
+  <p style="margin-top:1.5rem;font-size:0.72rem;color:rgba(245,240,232,0.2);">© 2026 Jucy's Ace. Located at Bungan Bungan Falls.</p>
+</footer>
+
+<script>
+function showTab(id,el){
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  el.classList.add("active");
+}
+function sendOrder(){
+  const name=document.getElementById("name").value.trim();
+  const phone=document.getElementById("phone").value.trim();
+  const notes=document.getElementById("notes").value.trim();
+  const status=document.getElementById("status");
+  const checked=[...document.querySelectorAll(".items-grid input:checked")].map(i=>i.value);
+  if(!name){status.style.color="#d63b2f";status.textContent="Please enter your name.";return;}
+  if(!phone){status.style.color="#d63b2f";status.textContent="Please enter your phone number.";return;}
+  if(!checked.length){status.style.color="#d63b2f";status.textContent="Please select at least one item.";return;}
+  const subject=encodeURIComponent("New Order - Jucy's Ace");
+  const body=encodeURIComponent("NEW ORDER\n\nName: "+name+"\nPhone: "+phone+"\n\nOrder:\n"+checked.map(i=>"- "+i).join("\n")+"\n\nNotes: "+(notes||"None")+"\n\nTime: "+new Date().toLocaleString("en-PH"));
+  window.open("mailto:jucysace438@gmail.com?subject="+subject+"&body="+body);
+  status.style.color="#2a7a3b";
+  status.textContent="Opening email app... Send the email to complete your order! Salamat!";
+  document.getElementById("name").value="";
+  document.getElementById("phone").value="";
+  document.getElementById("notes").value="";
+  document.querySelectorAll(".items-grid input:checked").forEach(i=>i.checked=false);
+}
+document.querySelectorAll("input[type=text],input[type=tel],textarea").forEach(el=>{
+  el.addEventListener("focus",function(){this.style.borderColor="#f5c842";});
+  el.addEventListener("blur",function(){this.style.borderColor="rgba(255,255,255,0.1)";});
+});
+</script>
+
+</body>
+</html>
