@@ -6,6 +6,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jucy's Ace</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#f5c842">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Jucy's Ace">
+<link rel="apple-touch-icon" href="https://i.ibb.co/N2mqkvnK/IMG-3708.jpg">
+<script>
+if("serviceWorker" in navigator){
+  window.addEventListener("load", function(){
+    navigator.serviceWorker.register("sw.js");
+  });
+}
+</script>
 <style>
 :root{--black:#0a0a0a;--white:#f5f0e8;--yellow:#f5c842;--red:#d63b2f;--charcoal:#1c1c1c;}
 *{margin:0;padding:0;box-sizing:border-box;}
