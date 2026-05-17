@@ -1,0 +1,22 @@
+{
+  "name": "Jucy's Ace",
+  "short_name": "Jucy's Ace",
+  "description": "Burger, Shawarma, Bar & Shakes at Bungan Bungan Falls",
+  "start_url": "/Jucysace/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#f5c842",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/N2mqkvnK/IMG-3708.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://i.ibb.co/N2mqkvnK/IMG-3708.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
