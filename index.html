@@ -223,6 +223,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
     <p style="color:rgba(245,240,232,0.6);margin-bottom:2rem;">Fill out the form and we'll receive your order via email! 🍔</p>
     <div class="form-group"><label>Your Name *</label><input id="name" type="text" placeholder="e.g. Juan dela Cruz"></div>
     <div class="form-group"><label>Phone Number *</label><input id="phone" type="tel" placeholder="e.g. 09XXXXXXXXX"></div>
+<div class="form-group"><label>Delivery Address *</label><input id="address" type="text" placeholder="e.g. Brgy. San Jose, Bungan Bungan Falls..."></div>
     <label style="display:block;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,240,232,0.5);margin-bottom:0.6rem;">Select Items *</label>
     <div class="items-grid">
       <label class="item-check"><input type="checkbox" value="Burger"> 🍔 Burger</label>
@@ -265,13 +266,16 @@ function sendOrder(){
   if(!phone){status.style.color="#d63b2f";status.textContent="Please enter your phone number.";return;}
   if(!checked.length){status.style.color="#d63b2f";status.textContent="Please select at least one item.";return;}
   const subject=encodeURIComponent("New Order - Jucy's Ace");
-  const body=encodeURIComponent("NEW ORDER\n\nName: "+name+"\nPhone: "+phone+"\n\nOrder:\n"+checked.map(i=>"- "+i).join("\n")+"\n\nNotes: "+(notes||"None")+"\n\nTime: "+new Date().toLocaleString("en-PH"));
+  const address=document.getElementById("address").value.trim();
+  if(!address){status.style.color="#d63b2f";status.textContent="Please enter your delivery address.";return;}
+  const body=encodeURIComponent("NEW ORDER\n\nName: "+name+"\nPhone: "+phone+"\nAddress: "+address+"\n\nOrder:\n"+checked.map(i=>"- "+i).join("\n")+"\n\nNotes: "+(notes||"None")+"\n\nTime: "+new Date().toLocaleString("en-PH"));
   window.open("mailto:jucysace438@gmail.com?subject="+subject+"&body="+body);
   status.style.color="#2a7a3b";
   status.textContent="Opening email app... Send the email to complete your order! Salamat!";
   document.getElementById("name").value="";
   document.getElementById("phone").value="";
   document.getElementById("notes").value="";
+  document.getElementById("address").value="";
   document.querySelectorAll(".items-grid input:checked").forEach(i=>i.checked=false);
 }
 document.querySelectorAll("input[type=text],input[type=tel],textarea").forEach(el=>{
